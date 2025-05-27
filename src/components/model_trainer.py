@@ -95,23 +95,23 @@ class ModelTrainer:
                 }
             }
 
-            for name, model in models.items():
-                if name in param_grids:
-                    search = RandomizedSearchCV(
-                        model,
-                        param_distributions=param_grids[name],
-                        n_iter=5,
-                        cv=3,
-                        scoring='r2',
-                        n_jobs=-1,
-                        random_state=42
-                    )
-                    search.fit(X_train, y_train)
-                    models[name] = search.best_estimator_  # Replace with best estimator
+            # for name, model in models.items():
+            #     if name in param_grids:
+            #         search = RandomizedSearchCV(
+            #             model,
+            #             param_distributions=param_grids[name],
+            #             n_iter=5,
+            #             cv=3,
+            #             scoring='r2',
+            #             n_jobs=-1,
+            #             random_state=42
+            #         )
+                    # search.fit(X_train, y_train)
+                    # models[name] = search.best_estimator_  # Replace with best estimator
 
             model_report: dict = evaluate_models(
                 X_train=X_train, y_train=y_train, X_test=X_test,
-                y_test=y_test, models=models
+                y_test=y_test, models=models, param = param_grids
             )
             
 
