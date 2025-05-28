@@ -1,15 +1,12 @@
 # Use an official Python image
-FROM python:3.10-slim-bullseye
+FROM python:3.13-slim
 
-WORKDIR /application
+WORKDIR /app
 
 # Copy requirements and install dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir --default-timeout=100 -r requirements.txt
+COPY . /app
+RUN apt updated -y && apt install awscli
 
-# Copy the rest of your code
-COPY . .
+RUN pip install -r requirements.txt
 
-EXPOSE 5000
-
-CMD ["python", "application.py"]
+CMD ["python", "app.py"]
