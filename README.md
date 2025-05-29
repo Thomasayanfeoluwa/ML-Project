@@ -1,1 +1,1 @@
-# End to End Machine Learning Project for Math Score Prediction
+# End to End Machine Learning Project
